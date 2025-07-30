@@ -6,8 +6,6 @@ export const User = {
   createdAt: (user: UserType) => user.created_at,
   updatedAt: (user: UserType) => user.updated_at,
   products: (user: UserType) => {
-    return products.filter((product) =>
-      user.products_ids?.includes(product.id)
-    );
+    return products.filter((product) => user.products_ids?.includes(product.id));
   },
 };

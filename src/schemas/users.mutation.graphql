@@ -1,0 +1,26 @@
+extend type Mutation {
+  createUser(input: CreateUserInput!): [User]!
+  updateUser(id: ID!, input: UpdateUserInput!): [User]!
+  deleteUser(id: ID!): [User]!
+  addUserProducts(id: ID!, productsIds: [ID!]!): [User]!
+  removeUserProducts(id: ID!, productsIds: [ID!]!): [User]!
+}
+
+input CreateUserInput {
+  name: String!
+  email: String!
+  age: Int!
+  wage: Float!
+  admin: Boolean
+  status: Status
+}
+
+input UpdateUserInput {
+  name: String
+  email: String
+  age: Int
+  wage: Float
+  admin: Boolean
+  custom: String
+  status: Status
+}
