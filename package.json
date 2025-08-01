@@ -5,7 +5,12 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "dev": "tsx watch src/index.ts"
+    "dev": "tsx watch src/index.ts",
+    "docker:up": "docker compose up",
+    "docker:down": "docker compose down",
+    "docker:ls": "docker container ls",
+    "migrate": "knex migrate:latest --knexfile knexfile.cjs",
+    "migrate:make": "knex migrate:make --knexfile knexfile.cjs -x cjs"
   },
   "keywords": [],
   "author": "",
@@ -14,7 +19,9 @@
     "@apollo/server": "^5.0.0",
     "@graphql-tools/load-files": "^7.0.1",
     "@graphql-tools/schema": "^10.0.25",
-    "graphql": "^16.11.0"
+    "graphql": "^16.11.0",
+    "knex": "^3.1.0",
+    "mysql2": "^3.14.3"
   },
   "devDependencies": {
     "@biomejs/biome": "2.1.2",
