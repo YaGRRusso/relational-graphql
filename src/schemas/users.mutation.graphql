@@ -7,8 +7,8 @@ extend type Mutation {
 }
 
 input CreateUserInput {
-  name: String!
-  email: String!
+  name: NonEmptyString!
+  email: Email!
   age: Int!
   wage: Float!
   admin: Boolean
@@ -16,8 +16,8 @@ input CreateUserInput {
 }
 
 input UpdateUserInput {
-  name: String
-  email: String
+  name: NonEmptyString
+  email: Email
   age: Int
   wage: Float
   admin: Boolean
