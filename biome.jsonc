@@ -1,6 +1,17 @@
 {
-  "$schema": "https://biomejs.dev/schemas/2.1.2/schema.json",
+  "$schema": "https://biomejs.dev/schemas/2.1.3/schema.json",
   "extends": ["ultracite"],
+  "overrides": [
+    {
+      "includes": ["src/generated/**"],
+      "linter": {
+        "enabled": false
+      },
+      "formatter": {
+        "enabled": false
+      }
+    }
+  ],
   "linter": {
     "rules": {
       "suspicious": {

@@ -6,6 +6,32 @@ extend type Mutation {
   removeUserProducts(id: ID!, productsIds: [ID!]!): [User]!
 }
 
+extend type Query {
+  user(id: ID!): User
+  users: [User!]!
+  me: User
+  protected: String
+}
+
+enum Status {
+  ACTIVE
+  INACTIVE
+}
+
+type User {
+  id: ID!
+  name: NonEmptyString!
+  email: Email!
+  age: Int!
+  wage: Float!
+  admin: Boolean!
+  custom: String!
+  createdAt: Date!
+  updatedAt: Date!
+  products: [Product!]!
+  status: Status!
+}
+
 input CreateUserInput {
   name: NonEmptyString!
   email: Email!
