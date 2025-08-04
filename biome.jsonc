@@ -5,6 +5,9 @@
     "rules": {
       "suspicious": {
         "noConsole": "off"
+      },
+      "style": {
+        "useBlockStatements": "off"
       }
     }
   },

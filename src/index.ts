@@ -2,6 +2,7 @@ import { ApolloServer } from '@apollo/server';
 import { startStandaloneServer } from '@apollo/server/standalone';
 import { loadFilesSync } from '@graphql-tools/load-files';
 import { makeExecutableSchema } from '@graphql-tools/schema';
+import { context } from './context';
 import { resolvers } from './resolvers';
 
 const typeDefs = loadFilesSync('src/schemas/**/*.graphql', {});
@@ -17,6 +18,7 @@ const server = new ApolloServer({
 
 await startStandaloneServer(server, {
   listen: { port: 4000 },
+  context,
 })
   .then(({ url }) => {
     console.log('🚀 Server Running\n', url);
