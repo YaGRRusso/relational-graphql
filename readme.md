@@ -1,29 +1,33 @@
 # exercicios-graphql
 
-A GraphQL server built with Apollo Server, providing user and product management functionalities. This project serves as an exercise to understand and implement a GraphQL API from scratch.
+A GraphQL server built with Apollo Server, providing user and product management functionalities. This project serves as an exercise to understand and implement a GraphQL API from scratch, complete with database integration.
 
 ## Problem Solved
 
-This project addresses the need for a structured and strongly-typed API for managing related entities like users and products. It centralizes data access and manipulation through a single endpoint, improving efficiency and maintainability over traditional REST APIs.
+This project addresses the need for a structured and strongly-typed API for managing related entities like users and products. It centralizes data access and manipulation through a single endpoint, improving efficiency and maintainability over traditional REST APIs by connecting directly to a relational database.
 
 ## Features
 
-- **User Management:** Comprehensive handling of user accounts, including creating, updating, and querying user profiles.
+- **User Management:** Comprehensive handling of user accounts, including creating, updating, and querying user profiles, as well as managing relationships between users and products.
 - **Product Management:** Complete control over the product catalog, allowing for the creation, modification, and retrieval of product information.
+- **Database Integration:** Uses Knex.js for SQL query building and migrations, with a setup for a MySQL database.
+- **Code Generation:** Automatically generates GraphQL schema and TypeScript types from schema definition files.
 
 ## Technologies Used
 
 - **Languages:** TypeScript
 - **Frameworks & Libraries:**
-  - [Apollo Server](https://www.apollographql.com/docs/apollo-server/): A spec-compliant GraphQL server that's compatible with any GraphQL client.
-  - [GraphQL](https://graphql.org/): A query language for your API and a server-side runtime for executing queries by using a type system you define for your data.
-  - [tsx](https://github.com/esbuild-kit/tsx): A CLI command that enhances `node` to run TypeScript and ESM modules.
+  - [Apollo Server](https://www.apollographql.com/docs/apollo-server/): A spec-compliant GraphQL server.
+  - [GraphQL](https://graphql.org/): A query language for APIs.
+  - [Knex.js](https://knexjs.org/): A SQL query builder for Node.js.
+  - [DataLoader](https://github.com/graphql/dataloader): A batching and caching utility for data fetching.
+  - [mysql2](https://github.com/sidorares/node-mysql2): MySQL client for Node.js.
 - **Developer Tools:**
-  - [Biome](https://biomejs.dev/): A high-performance toolchain for web development, used here for formatting and linting.
-  - [Husky](https://typicode.github.io/husky/): A tool that makes it easy to use Git hooks.
-  - [lint-staged](https://github.com/okonet/lint-staged): A tool to run linters on staged files in Git.
-  - [Ultracite](https://github.com/ultracite/ultracite): A configuration and script package for maintaining code quality.
-  - [TypeScript](https://www.typescriptlang.org/): A typed superset of JavaScript that compiles to plain JavaScript.
+  - [tsx](https://github.com/esbuild-kit/tsx): A CLI command that enhances `node` to run TypeScript and ESM modules.
+  - [Docker](https://www.docker.com/): For containerizing and running the database service.
+  - [Biome](https://biomejs.dev/): For code formatting and linting.
+  - [GraphQL Code Generator](https://www.graphql-code-generator.com/): For generating code from your GraphQL schema.
+  - [TypeScript](https://www.typescriptlang.org/): A typed superset of JavaScript.
 
 ## Quick Start
 
@@ -31,6 +35,7 @@ This project addresses the need for a structured and strongly-typed API for mana
 
 - [Node.js](https://nodejs.org/) (v18 or higher recommended)
 - [npm](https://www.npmjs.com/) (or your favorite package manager)
+- [Docker](https://www.docker.com/)
 
 ### Installation
 
@@ -44,13 +49,24 @@ This project addresses the need for a structured and strongly-typed API for mana
     npm install
     ```
 
+### Configuration
+
+The project uses a `docker-compose.yml` file to set up a MySQL database service. No manual configuration is needed as the application is pre-configured to connect to this Docker container.
+
 ### How to Run the Project
 
-Start the development server:
-
-```bash
-npm run dev
-```
+1.  Start the database container:
+    ```bash
+    npm run docker:up
+    ```
+2.  Run the database migrations to set up the tables:
+    ```bash
+    npm run migrate
+    ```
+3.  Start the development server:
+    ```bash
+    npm run dev
+    ```
 
 The server will start on `http://localhost:4000/`. You can access the GraphQL Playground in your browser to interact with the API.
 
@@ -90,17 +106,19 @@ mutation {
 
 The project is organized into the following main directories:
 
-- `src/`: Contains the main source code for the application.
-  - `helpers/`: Utility functions and helpers, like database connections.
-  - `mocks/`: Mock data for development and testing purposes.
-  - `resolvers/`: The core logic for handling GraphQL queries and mutations.
-  - `schemas/`: GraphQL schema definitions (`.graphql` files).
-- `dist/`: The compiled output directory (not present in this project as `tsx` handles TypeScript execution at runtime).
+exercicios-graphql/
+├── src/
+│ ├── db/ # Database-related files, including migrations
+│ ├── generated/ # Auto-generated GraphQL schema and TypeScript types
+│ ├── helpers/ # Utility functions (e.g., database connection setup)
+│ ├── mocks/ # Mock data for development and testing
+│ └── schemas/ # GraphQL schema definitions and resolver logic (by domain)
+└── dist/ # Compiled output (not used with tsx runtime)
 
 ## Roadmap
 
 - **Authentication & Authorization:** Implement user authentication (e.g., JWT) and role-based access control.
-- **Database Integration:** Replace mock data with a real database connection (e.g., PostgreSQL with Prisma or TypeORM).
 - **Pagination:** Add pagination to queries that can return large lists of data.
 - **Subscriptions:** Implement GraphQL Subscriptions for real-time updates.
 - **Testing:** Add a comprehensive test suite with unit and integration tests.
+- **Environment Variables:** Move sensitive data and configurations to environment variables instead of hardcoded values.
