@@ -10,7 +10,7 @@ extend type Query {
   user(id: ID!): User
   users: [User!]!
   me: User
-  protected: String
+  secure: String
 }
 
 enum Status {
@@ -20,7 +20,7 @@ enum Status {
 
 type User {
   id: ID!
-  name: NonEmptyString!
+  name: String!
   email: Email!
   age: Int!
   wage: Float!
@@ -33,7 +33,7 @@ type User {
 }
 
 input CreateUserInput {
-  name: NonEmptyString!
+  name: String!
   email: Email!
   age: Int!
   wage: Float!
@@ -42,7 +42,7 @@ input CreateUserInput {
 }
 
 input UpdateUserInput {
-  name: NonEmptyString
+  name: String
   email: Email
   age: Int
   wage: Float

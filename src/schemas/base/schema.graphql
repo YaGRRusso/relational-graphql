@@ -1,6 +1,5 @@
 scalar Date
 scalar Email
-scalar NonEmptyString
 
 type Query {
   _empty: String

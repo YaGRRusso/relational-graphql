@@ -1,0 +1,84 @@
+input CreateProductInput {
+  discount: Float
+  name: String!
+  price: Float!
+}
+
+input CreateUserInput {
+  admin: Boolean
+  age: Int!
+  email: Email!
+  name: String!
+  status: Status
+  wage: Float!
+}
+
+scalar Date
+
+scalar Email
+
+type Mutation {
+  _empty: String
+  addUserProducts(id: ID!, productsIds: [ID!]!): [User]!
+  createProduct(input: CreateProductInput!): [Product]!
+  createUser(input: CreateUserInput!): [User]!
+  deleteProduct(id: ID!): [Product]!
+  deleteUser(id: ID!): [User]!
+  removeUserProducts(id: ID!, productsIds: [ID!]!): [User]!
+  updateProduct(id: ID!, input: UpdateProductInput!): [Product]!
+  updateUser(id: ID!, input: UpdateUserInput!): [User]!
+}
+
+type Product {
+  basePrice: Float!
+  discount: Float
+  finalPrice: Float!
+  id: ID!
+  name: String!
+}
+
+type Query {
+  _empty: String
+  me: User
+  product(id: ID!): Product
+  products: [Product!]!
+  secure: String
+  user(id: ID!): User
+  users: [User!]!
+  version: String!
+}
+
+enum Status {
+  ACTIVE
+  INACTIVE
+}
+
+input UpdateProductInput {
+  discount: Float
+  name: String
+  price: Float
+}
+
+input UpdateUserInput {
+  admin: Boolean
+  age: Int
+  custom: String
+  email: Email
+  name: String
+  status: Status
+  wage: Float
+}
+
+type User {
+  admin: Boolean!
+  age: Int!
+  createdAt: Date!
+  custom: String!
+  email: Email!
+  id: ID!
+  name: String!
+  products: [Product!]!
+  status: Status!
+  updatedAt: Date!
+  wage: Float!
+}
