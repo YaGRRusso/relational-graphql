@@ -106,6 +106,7 @@ mutation {
 
 The project is organized into the following main directories:
 
+```
 exercicios-graphql/
 ├── src/
 │ ├── db/ # Database-related files, including migrations
@@ -114,6 +115,7 @@ exercicios-graphql/
 │ ├── mocks/ # Mock data for development and testing
 │ └── schemas/ # GraphQL schema definitions and resolver logic (by domain)
 └── dist/ # Compiled output (not used with tsx runtime)
+```
 
 ## Roadmap
 
