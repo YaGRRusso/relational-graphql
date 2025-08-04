@@ -1,3 +1,4 @@
+import type { Context } from '../context';
 import { products } from '../mocks/product';
 import { users } from '../mocks/user';
 
@@ -6,7 +7,7 @@ export const Query = {
   version: () => '1.0.0',
 
   // USER QUERIES
-  user: (_, { id }) => users.find((user) => user.id === id),
+  user: (_, { id }, { loaders }: Context) => loaders.userById.load(id),
   users: () => users,
   me: (_, __, ctx) => {
     if (!ctx?.user) throw new Error('Unauthenticated');
@@ -18,6 +19,6 @@ export const Query = {
   },
 
   // PRODUCT QUERIES
-  product: (_, { id }) => products.find((product) => product.id === id),
+  product: (_, { id }, { loaders }: Context) => loaders.productById.load(id),
   products: () => products,
 };
