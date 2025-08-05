@@ -1,4 +1,4 @@
-# exercicios-graphql
+# relational-graphql
 
 A GraphQL server built with Apollo Server, providing user and product management functionalities. This project serves as an exercise to understand and implement a GraphQL API from scratch, complete with database integration.
 
@@ -41,8 +41,8 @@ This project addresses the need for a structured and strongly-typed API for mana
 
 1.  Clone the repository:
     ```bash
-    git clone https://github.com/YaGRRusso/exercicios-graphql.git
-    cd exercicios-graphql
+    git clone https://github.com/YaGRRusso/relational-graphql.git
+    cd relational-graphql
     ```
 2.  Install the dependencies:
     ```bash
@@ -107,7 +107,7 @@ mutation {
 The project is organized into the following main directories:
 
 ```
-exercicios-graphql/
+relational-graphql/
 ├── src/
 │ ├── db/ # Database-related files, including migrations
 │ ├── generated/ # Auto-generated GraphQL schema and TypeScript types
